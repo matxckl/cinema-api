@@ -21,7 +21,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public List<Movie> getMovies(@RequestParam(required = false) String query,
+    public List<Movie> getMovies(@RequestParam(defaultValue = "") String query,
                                  @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE) Integer page,
                                  @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE_SIZE) Integer size) {
         PageSizeValidator.validatePageSize(size);

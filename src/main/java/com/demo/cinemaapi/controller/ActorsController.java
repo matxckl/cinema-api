@@ -30,7 +30,7 @@ public class ActorsController {
     }
 
     @GetMapping("/actors")
-    public List<Actor> getActors(@RequestParam(required = false) String query,
+    public List<Actor> getActors(@RequestParam(defaultValue = "") String query,
                                  @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE) Integer page,
                                  @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE_SIZE) Integer size) {
         PageSizeValidator.validatePageSize(size);
