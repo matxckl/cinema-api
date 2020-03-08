@@ -1,29 +1,12 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Cinema API ###
 
-### What is this repository for? ###
+Spring Boot 2 based REST API for fetching movie data from MySQL database
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Build and run ###
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Build with maven: mvn install or ./mvnw install in root project dir
+* Run: java -jar target/cinema-api-1.0.0.jar
+* Configured with local MySQL database
+* Secured with Basic Auth: 3 predefined users: user1/pass1; user2/pass2; user3/pass3
