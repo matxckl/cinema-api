@@ -9,11 +9,8 @@ import javax.persistence.*;
 public class Appearance {
 
     @Id
-    @JsonIgnore
     private Long index;
-    @JsonIgnore
     private Integer actorId;
-    @JsonProperty("character_name")
     private String characterName;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie_id")
