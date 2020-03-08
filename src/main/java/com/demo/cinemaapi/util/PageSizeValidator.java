@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 public class PageSizeValidator {
-    private static Integer MAX_PAGE_SIZE;
+    private static final Integer MAX_PAGE_SIZE = 1000;
 
     public static void validatePageSize(Integer size) {
         if (size > MAX_PAGE_SIZE) {
