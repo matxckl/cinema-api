@@ -29,7 +29,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{movieId}")
-    public Movie getMovie(@PathVariable String movieId) {
+    public Movie getMovie(@PathVariable Integer movieId) {
         return movieRepository.findById(movieId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
