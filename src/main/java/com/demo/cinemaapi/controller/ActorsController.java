@@ -5,6 +5,8 @@ import com.demo.cinemaapi.model.AppearanceConverter;
 import com.demo.cinemaapi.model.AppearanceDTO;
 import com.demo.cinemaapi.repository.ActorRepository;
 import com.demo.cinemaapi.repository.AppearanceRepository;
+import com.demo.cinemaapi.util.PageSizeConstants;
+import com.demo.cinemaapi.util.PageSizeValidator;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,10 @@ public class ActorsController {
     }
 
     @GetMapping("/actors")
-    public List<Actor> getActors(@RequestParam(required = false) String query, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public List<Actor> getActors(@RequestParam(required = false) String query,
+                                 @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE) Integer page,
+                                 @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE_SIZE) Integer size) {
+        PageSizeValidator.validatePageSize(size);
         return actorRepository.findByNameContains(query, PageRequest.of(page, size)).getContent();
     }
 
@@ -39,7 +44,10 @@ public class ActorsController {
     }
 
     @GetMapping("/actors/{actorId}/appearances")
-    public List<AppearanceDTO> getAppearances(@PathVariable Integer actorId, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public List<AppearanceDTO> getAppearances(@PathVariable Integer actorId,
+                                              @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE) Integer page,
+                                              @RequestParam(defaultValue = PageSizeConstants.DEFAULT_PAGE_SIZE) Integer size) {
+        PageSizeValidator.validatePageSize(size);
         return appearanceRepository.findByActorId(actorId, PageRequest.of(page, size)).getContent().stream()
                 .map(AppearanceConverter::toDTO)
                 .collect(Collectors.toList());
