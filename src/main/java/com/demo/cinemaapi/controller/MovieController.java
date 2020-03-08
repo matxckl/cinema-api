@@ -19,7 +19,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public List<Movie> getMovies(@RequestParam String query, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public List<Movie> getMovies(@RequestParam(required = false) String query, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return movieRepository.findByTitleContains(query, PageRequest.of(page, size)).getContent();
     }
 

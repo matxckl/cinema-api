@@ -1,7 +1,6 @@
 package com.demo.cinemaapi.controller;
 
 import com.demo.cinemaapi.model.Actor;
-import com.demo.cinemaapi.model.Appearance;
 import com.demo.cinemaapi.model.AppearanceConverter;
 import com.demo.cinemaapi.model.AppearanceDTO;
 import com.demo.cinemaapi.repository.ActorRepository;
@@ -29,7 +28,7 @@ public class ActorsController {
     }
 
     @GetMapping("/actors")
-    public List<Actor> getActors(@RequestParam String query, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+    public List<Actor> getActors(@RequestParam(required = false) String query, @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return actorRepository.findByNameContains(query, PageRequest.of(page, size)).getContent();
     }
 
